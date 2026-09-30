@@ -104,6 +104,46 @@
     .step:nth-child(3) { background: #fcf1e8; }
     .scope-note { margin: 26px 0 0; color: #657779; font-size: .86rem; }
 
+    .try-section { background: #eaf2eb; border-bottom: 1px solid #d4e2d6; }
+    .try-intro { display: flex; align-items: end; justify-content: space-between; gap: 28px; }
+    .try-intro .section-heading { max-width: 700px; }
+    .usage-pill { flex: 0 0 auto; padding: 12px 17px; border-radius: 999px; border: 1px solid #c7dbcd; background: #fffdf8; color: #315c56; font-size: .85rem; font-weight: 750; }
+    .try-grid { display: grid; grid-template-columns: 1.02fr .98fr; gap: 18px; align-items: start; margin-top: 38px; }
+    .form-card, .result-card { background: #fffefa; border: 1px solid #d8e1d8; border-radius: var(--radius); padding: 28px; box-shadow: 0 15px 42px rgba(14, 56, 50, .06); }
+    .form-card h3, .result-card h3 { font-size: 1.18rem; margin: 0 0 8px; letter-spacing: -.02em; }
+    .form-card .help, .result-card .help { color: var(--muted); font-size: .84rem; margin: 0 0 20px; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .field { display: grid; gap: 6px; min-width: 0; }
+    .field.wide { grid-column: 1 / -1; }
+    .field label, .field-label { font-size: .79rem; font-weight: 760; color: #334d50; }
+    .field small { color: #657779; font-size: .73rem; line-height: 1.35; }
+    .field input, .field select { width: 100%; border: 1px solid #bfd0c9; border-radius: 10px; padding: 11px 12px; min-height: 46px; color: var(--ink); background: white; font: inherit; font-size: .94rem; }
+    .field input:disabled { color: #84928d; background: #edf2ed; }
+    .field input:focus, .field select:focus { border-color: var(--teal); outline: 3px solid #d0eae0; outline-offset: 1px; }
+    .field-group { grid-column: 1 / -1; margin: 7px 0 0; padding: 16px; border: 1px solid #e0e8e1; border-radius: 13px; background: #fafbf7; display: grid; gap: 14px; }
+    .field-group legend { padding: 0 5px; font-size: .82rem; font-weight: 800; }
+    .checkbox-row { display: flex; align-items: flex-start; gap: 10px; font-size: .86rem; cursor: pointer; }
+    .checkbox-row input { width: 18px; height: 18px; margin: 3px 0 0; accent-color: var(--teal); }
+    .form-submit { width: 100%; border: 0; cursor: pointer; margin-top: 22px; }
+    .form-submit:disabled { opacity: .55; cursor: wait; transform: none; }
+    .form-message { min-height: 25px; color: #9b4c35; font-size: .85rem; margin: 11px 0 0; }
+    .form-foot { margin: 4px 0 0; color: #687977; font-size: .75rem; }
+    .result-card { min-height: 410px; }
+    .empty-result { min-height: 290px; display: grid; place-content: center; text-align: center; border: 1px dashed #bdd2c5; border-radius: 15px; background: #f5faf5; padding: 27px; color: #4d6a63; }
+    .empty-result .symbol { font: 3.5rem/1 Georgia, serif; color: var(--teal); margin-bottom: 12px; }
+    .empty-result p { margin: 0; max-width: 280px; }
+    .result-metrics { display: grid; gap: 10px; margin: 20px 0; }
+    .result-metric { padding: 16px; border-radius: 12px; background: #e8f2eb; }
+    .result-metric.warm { background: #f9eee4; }
+    .result-metric span { display: block; color: #42655e; font-size: .75rem; font-weight: 800; text-transform: uppercase; letter-spacing: .07em; }
+    .result-metric strong { display: block; margin: 4px 0; font: 1.9rem/1.1 Georgia, serif; letter-spacing: -.03em; }
+    .result-metric small { display: block; font-size: .75rem; line-height: 1.45; color: #56716c; }
+    .model-text { border-top: 1px solid #dfe6df; padding-top: 18px; font-size: .88rem; }
+    .model-text p { margin: 7px 0 12px; }
+    .model-text ol { margin: 0; padding-left: 21px; }
+    .model-text li { margin: 8px 0; }
+    .result-boundary { margin: 17px 0 0; color: #687977; font-size: .74rem; line-height: 1.5; }
+
     .questions-grid { display: grid; grid-template-columns: .92fr 1.08fr; align-items: center; gap: 70px; }
     .questions-grid .section-heading p { max-width: 470px; }
     .choice-card { padding: 28px; border-radius: var(--radius); background: #fff; border: 1px solid #dde4de; box-shadow: 0 15px 45px rgba(19, 47, 45, .07); }
@@ -136,7 +176,7 @@
     footer a:hover { text-decoration: underline; }
 
     @media (max-width: 900px) {
-      .hero-grid, .problem-grid, .questions-grid, .trust-grid { grid-template-columns: 1fr; }
+      .hero-grid, .problem-grid, .questions-grid, .trust-grid, .try-grid { grid-template-columns: 1fr; }
       .hero { padding-top: 58px; }
       .hero h1 { max-width: 720px; }
       .preview-area { width: min(620px, 100%); margin: 15px auto 0; }
@@ -157,6 +197,11 @@
       .floating-note { right: -8px; bottom: -3px; }
       .ribbon-inner { gap: 10px; }
       .ribbon-inner span { flex-basis: 100%; }
+      .try-intro { display: block; }
+      .usage-pill { display: inline-block; margin-top: 20px; }
+      .form-card, .result-card { padding: 21px; }
+      .form-grid { grid-template-columns: 1fr; }
+      .field.wide, .field-group { grid-column: auto; }
       section.block { padding: 72px 0; }
       .how-grid, .trust-list { grid-template-columns: 1fr; }
       .step { min-height: 0; padding: 23px; }
@@ -175,7 +220,7 @@
     <nav class="nav wrap" aria-label="Main navigation">
       <a class="brand" href="#top" aria-label="BridgePlan home"><span class="mark" aria-hidden="true">b</span><span>bridgeplan</span></a>
       <div class="nav-links"><a href="#why">Why it matters</a><a href="#how">How it works</a><a href="#questions">What to ask</a></div>
-      <a class="button" href="#how">Explore BridgePlan <span aria-hidden="true">↗</span></a>
+      <a class="button" href="#scenario">Try a scenario <span aria-hidden="true">↗</span></a>
     </nav>
   </header>
 
@@ -187,7 +232,7 @@
           <h1 class="serif" id="hero-title">Make room for <em>both</em> generations.</h1>
           <p class="lede">Explore what a parent’s unexpected hospital bill could mean for the money your family can gather and the goal you are saving toward.</p>
           <p class="launch-line">If a parent's hospital bill came to more than insurance paid, where would the rest come from? Your emergency fund? Your flat or MBA savings?</p>
-          <div class="hero-actions"><a class="button" href="#how">See how it works <span aria-hidden="true">↗</span></a><a class="button secondary" href="#questions">Start with a question</a></div>
+          <div class="hero-actions"><a class="button" href="#scenario">Try a scenario <span aria-hidden="true">↗</span></a><a class="button secondary" href="#how">See how it works</a></div>
           <div class="hero-note"><span class="dot" aria-hidden="true"></span> User-chosen scenarios. No claim decisions or predictions.</div>
         </div>
         <div class="preview-area" aria-label="Illustrative BridgePlan product preview">
@@ -233,6 +278,54 @@
       </div>
     </section>
 
+    <section class="block try-section" id="scenario" aria-labelledby="scenario-title">
+      <div class="wrap">
+        <div class="try-intro">
+          <div class="section-heading"><div class="eyebrow">Try BridgePlan</div><h2 class="serif" id="scenario-title">Put one what-if to the test.</h2><p>Use a hypothetical bill and your own assumptions. The amounts below are sample starting values. Replace them before relying on the scenario.</p></div>
+          <div class="usage-pill" id="usage-count" aria-live="polite">Loading scenario checks…</div>
+        </div>
+        <div class="try-grid">
+          <form class="form-card" id="scenario-form">
+            <h3>Your scenario</h3>
+            <p class="help">Whole rupees only. Family funds must exclude money already counted in your goal.</p>
+            <div class="form-grid">
+              <div class="field"><label for="bill">Hypothetical hospital bill (₹)</label><input id="bill" name="bill" type="number" inputmode="numeric" min="1000" max="5000000" step="1" value="200000" required></div>
+              <div class="field"><label for="familyFunds">Other family funds accessible (₹)</label><input id="familyFunds" name="familyFunds" type="number" inputmode="numeric" min="0" max="5000000" step="1" value="50000" required><small>Exclude your savings goal balance.</small></div>
+              <fieldset class="field-group">
+                <legend>Assumed insurer payout</legend>
+                <label class="checkbox-row" for="payoutUnknown"><input id="payoutUnknown" type="checkbox" checked><span>I don't know. Test a range from no payout to the full bill.</span></label>
+                <div class="form-grid" id="payout-fields">
+                  <div class="field"><label for="payoutLow">Lower assumption (₹)</label><input id="payoutLow" type="number" min="0" max="5000000" step="1" value="0" disabled></div>
+                  <div class="field"><label for="payoutHigh">Upper assumption (₹)</label><input id="payoutHigh" type="number" min="0" max="5000000" step="1" value="0" disabled></div>
+                </div>
+              </fieldset>
+              <div class="field"><label for="targetAmount">One savings goal target (₹)</label><input id="targetAmount" type="number" min="1000" max="20000000" step="1" value="1000000" required></div>
+              <div class="field"><label for="currentSaved">Already saved for that goal (₹)</label><input id="currentSaved" type="number" min="0" max="20000000" step="1" value="200000" required></div>
+              <div class="field"><label for="monthlySaving">Planned monthly saving (₹)</label><input id="monthlySaving" type="number" min="1" max="1000000" step="1" value="20000" required></div>
+              <div class="field"><label for="focus">Question to explore</label><select id="focus"><option value="policy">What might the policy cover?</option><option value="timing">When would money be needed?</option><option value="family">Who could I discuss this with?</option></select></div>
+            </div>
+            <button class="button form-submit" id="run-button" type="submit">Run this what-if <span aria-hidden="true">↗</span></button>
+            <p class="form-message" id="form-message" role="alert"></p>
+            <p class="form-foot">Five checks per browser. No diagnosis, names, or bank login requested.</p>
+          </form>
+          <div class="result-card" aria-live="polite">
+            <h3>Your check</h3>
+            <p class="help">Calculations come from code; Gemini helps turn uncertainty into questions.</p>
+            <div class="empty-result" id="empty-result"><div class="symbol" aria-hidden="true">?</div><p>Your result will appear here after you run a scenario.</p></div>
+            <div id="scenario-result" hidden>
+              <div class="result-metrics">
+                <div class="result-metric"><span>Possible amount still to find</span><strong id="gap-range"></strong><small>After the payout you assumed and the other family funds you entered. This is not a hospital deposit estimate.</small></div>
+                <div class="result-metric warm"><span>Possible effect on one goal</span><strong id="delay-range"></strong><small>If the remaining amount is funded from savings planned for that goal, with zero assumed return.</small></div>
+              </div>
+              <div class="model-text"><strong>Questions worth resolving</strong><p id="model-summary"></p><ol id="model-questions"></ol></div>
+              <p class="result-boundary">What-if, not a forecast. An insurer's actual payout and payment timing may differ. BridgePlan does not determine claim eligibility or tell you how to fund a bill today.</p>
+              <p class="form-foot" id="remaining-count"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="block" id="questions" aria-labelledby="questions-title">
       <div class="wrap questions-grid">
         <div class="section-heading"><div class="eyebrow">From our launch conversation</div><h2 class="serif" id="questions-title">The first useful step is often a question.</h2><p>Not sure what the policy covers? BridgePlan turns that into questions for your insurer, HR or family. It can't tell you whether a claim will be paid.</p></div>
@@ -250,7 +343,7 @@
 
     <aside class="trust" aria-labelledby="trust-title"><div class="wrap trust-grid"><div><div class="eyebrow">Built around your judgement</div><h2 class="serif" id="trust-title">The assumptions are yours to see.</h2><p>BridgePlan helps you explore consequences and prepare questions. You make the decisions.</p></div><div class="trust-list"><div class="trust-item"><strong>What-if, not forecast</strong>You choose the bill and payout assumptions.</div><div class="trust-item"><strong>Unknown stays unknown</strong>An unclear policy term is flagged as a question.</div><div class="trust-item"><strong>One goal at a time</strong>See a possible timeline effect without promising an outcome.</div><div class="trust-item"><strong>Minimal inputs</strong>No diagnosis or bank login is needed for the scenario.</div></div></div></aside>
 
-    <section class="closing" aria-labelledby="closing-title"><div class="wrap closing-content"><div class="eyebrow">BridgePlan</div><h2 class="serif" id="closing-title">Start with what you know. Find out what matters.</h2><p>Supporting your parents and planning your own future belong in the same conversation. Explore the approach, then decide which question to ask first.</p><a class="button" href="#top">Explore BridgePlan <span aria-hidden="true">↑</span></a></div></section>
+    <section class="closing" aria-labelledby="closing-title"><div class="wrap closing-content"><div class="eyebrow">BridgePlan</div><h2 class="serif" id="closing-title">Start with what you know. Find out what matters.</h2><p>Supporting your parents and planning your own future belong in the same conversation. Explore the approach, then decide which question to ask first.</p><a class="button" href="#scenario">Try a scenario <span aria-hidden="true">↑</span></a></div></section>
   </main>
 
   <footer><div class="wrap footer-inner"><span>© <span id="year">2026</span> BridgePlan. A product concept for an ISB GenAI assignment.</span><span>What-if scenarios only. No insurance eligibility or financial advice.</span></div></footer>
@@ -264,6 +357,93 @@
         result.textContent = choice.dataset.answer;
       });
     }
+
+    const form = document.getElementById('scenario-form');
+    const payoutUnknown = document.getElementById('payoutUnknown');
+    const payoutLow = document.getElementById('payoutLow');
+    const payoutHigh = document.getElementById('payoutHigh');
+    const formMessage = document.getElementById('form-message');
+    const runButton = document.getElementById('run-button');
+    const rupees = new Intl.NumberFormat('en-IN', {style:'currency', currency:'INR', maximumFractionDigits:0});
+    const amount = id => Number(document.getElementById(id).value);
+    const range = (low, high, formatter) => low === high ? formatter(low) : `${formatter(low)}–${formatter(high)}`;
+    payoutUnknown.addEventListener('change', () => {
+      payoutLow.disabled = payoutUnknown.checked;
+      payoutHigh.disabled = payoutUnknown.checked;
+      payoutLow.required = !payoutUnknown.checked;
+      payoutHigh.required = !payoutUnknown.checked;
+    });
+
+    async function readUsage() {
+      const display = document.getElementById('usage-count');
+      try {
+        const response = await fetch('/api/scenario', {cache:'no-store'});
+        if (!response.ok) throw new Error('Not connected');
+        const data = await response.json();
+        display.textContent = `${data.checksCompleted.toLocaleString('en-IN')} scenario checks completed`;
+      } catch { display.textContent = 'Scenario count available when connected'; }
+    }
+    readUsage();
+
+    form.addEventListener('submit', async event => {
+      event.preventDefault();
+      formMessage.textContent = '';
+      if (!form.reportValidity()) return;
+      if (amount('currentSaved') >= amount('targetAmount')) {
+        formMessage.textContent = 'Choose a savings goal still in progress.';
+        return;
+      }
+      if (!payoutUnknown.checked && (amount('payoutLow') > amount('payoutHigh') || amount('payoutHigh') > amount('bill'))) {
+        formMessage.textContent = 'Check the assumed payout range against the bill.';
+        return;
+      }
+      let visitorId;
+      try {
+        visitorId = localStorage.getItem('bridgeplan_visitor_id');
+        if (!visitorId) {
+          visitorId = crypto.randomUUID();
+          localStorage.setItem('bridgeplan_visitor_id', visitorId);
+        }
+      } catch {
+        formMessage.textContent = 'This demo needs browser storage to enforce its request limit.';
+        return;
+      }
+      const payload = {
+        visitorId, bill:amount('bill'), familyFunds:amount('familyFunds'),
+        payoutUnknown:payoutUnknown.checked,
+        payoutLow:payoutUnknown.checked ? 0 : amount('payoutLow'),
+        payoutHigh:payoutUnknown.checked ? 0 : amount('payoutHigh'),
+        targetAmount:amount('targetAmount'), currentSaved:amount('currentSaved'),
+        monthlySaving:amount('monthlySaving'), focus:document.getElementById('focus').value
+      };
+      runButton.disabled = true;
+      runButton.textContent = 'Checking your scenario…';
+      try {
+        const response = await fetch('/api/scenario', {
+          method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload)
+        });
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.error || 'The check is unavailable.');
+        const {calculation, answer} = data;
+        document.getElementById('gap-range').textContent = range(calculation.gapLow, calculation.gapHigh, rupees.format.bind(rupees));
+        document.getElementById('delay-range').textContent = range(calculation.delayLow, calculation.delayHigh, n => `${n} month${n === 1 ? '' : 's'}`);
+        document.getElementById('model-summary').textContent = answer.summary;
+        const list = document.getElementById('model-questions');
+        list.replaceChildren(...answer.questions.map(question => {
+          const li = document.createElement('li');
+          li.textContent = question;
+          return li;
+        }));
+        document.getElementById('remaining-count').textContent = `${data.remaining} of your five checks remain in this browser.`;
+        document.getElementById('empty-result').hidden = true;
+        document.getElementById('scenario-result').hidden = false;
+        document.getElementById('usage-count').textContent = `${data.checksCompleted.toLocaleString('en-IN')} scenario checks completed`;
+      } catch (error) { formMessage.textContent = error.message || 'Please try again later.'; }
+      finally {
+        runButton.disabled = false;
+        runButton.textContent = 'Run this what-if ↗';
+      }
+    });
   </script>
 </body>
 </html>
