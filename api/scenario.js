@@ -1,7 +1,7 @@
 import {randomUUID} from "node:crypto";
 import {InputError, SYSTEM_PROMPT, calculateScenario, modelIntent, normalizeInput, safeModelOutput} from "../lib/scenario-core.mjs";
 
-const MODEL = "gemini-2.5-flash-lite";
+const MODEL = "gemini-3.5-flash-lite";
 const TABLE = "bridgeplan_runs";
 const VISITOR_CAP = 5;
 const DAILY_CAP = 200;
