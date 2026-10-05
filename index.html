@@ -374,13 +374,21 @@
       payoutHigh.required = !payoutUnknown.checked;
     });
 
+    function usageText(data) {
+      const total = data.checksCompleted;
+      const unknown = data.payoutUnknownChecks;
+      const base = `${total.toLocaleString('en-IN')} scenario checks completed`;
+      if (!total || typeof unknown !== 'number') return base;
+      return `${base} · ${unknown.toLocaleString('en-IN')} of ${total.toLocaleString('en-IN')} didn't know their insurer payout`;
+    }
+
     async function readUsage() {
       const display = document.getElementById('usage-count');
       try {
         const response = await fetch('/api/scenario', {cache:'no-store'});
         if (!response.ok) throw new Error('Not connected');
         const data = await response.json();
-        display.textContent = `${data.checksCompleted.toLocaleString('en-IN')} scenario checks completed`;
+        display.textContent = usageText(data);
       } catch { display.textContent = 'Scenario count available when connected'; }
     }
     readUsage();
@@ -437,7 +445,7 @@
         document.getElementById('remaining-count').textContent = `${data.remaining} of your five checks remain in this browser.`;
         document.getElementById('empty-result').hidden = true;
         document.getElementById('scenario-result').hidden = false;
-        document.getElementById('usage-count').textContent = `${data.checksCompleted.toLocaleString('en-IN')} scenario checks completed`;
+        document.getElementById('usage-count').textContent = usageText(data);
       } catch (error) { formMessage.textContent = error.message || 'Please try again later.'; }
       finally {
         runButton.disabled = false;
