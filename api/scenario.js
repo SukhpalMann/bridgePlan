@@ -45,6 +45,14 @@ async function countRows(settings, filters = "") {
   return count;
 }
 
+async function usageStats(settings) {
+  const [checksCompleted, payoutUnknownChecks] = await Promise.all([
+    countRows(settings, "&status=eq.completed"),
+    countRows(settings, "&status=eq.completed&scenario_input->>payoutUnknown=eq.true")
+  ]);
+  return {checksCompleted, payoutUnknownChecks};
+}
+
 async function saveRow(settings, row) {
   await dbRequest(settings, "", {
     method:"POST", headers:{Prefer:"return=minimal"}, body:JSON.stringify(row)
@@ -102,8 +110,7 @@ export default async function handler(req, res) {
 
   if (req.method === "GET") {
     try {
-      const completed = await countRows(settings, "&status=eq.completed");
-      return send(res, 200, {checksCompleted:completed});
+      return send(res, 200, await usageStats(settings));
     } catch {
       return send(res, 503, {error:"Usage count is temporarily unavailable."});
     }
@@ -139,8 +146,8 @@ export default async function handler(req, res) {
         model_output:answer, status:"completed",
         input_tokens:gemini.inputTokens, output_tokens:gemini.outputTokens
       });
-      const checksCompleted = await countRows(settings, "&status=eq.completed");
-      return send(res, 200, {calculation:result, answer, checksCompleted, remaining:VISITOR_CAP - visitorCount - 1});
+      const usage = await usageStats(settings);
+      return send(res, 200, {calculation:result, answer, ...usage, remaining:VISITOR_CAP - visitorCount - 1});
     } catch (error) {
       try {
         await updateRow(settings, id, {status:"failed", model_output:{error:"Generation unavailable."}});
