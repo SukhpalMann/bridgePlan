@@ -143,6 +143,50 @@
     .model-text ol { margin: 0; padding-left: 21px; }
     .model-text li { margin: 8px 0; }
     .result-boundary { margin: 17px 0 0; color: #687977; font-size: .74rem; line-height: 1.5; }
+    .verdict { margin: 18px 0 16px; padding: 18px; border-radius: 14px; background: #e8f2eb; }
+    .verdict.ok { background: #e3f1e8; } .verdict.gap { background: #fbeee3; }
+    .verdict > span, .breakdown-title, .timeline-title { display: block; color: #42655e; font-size: .72rem; font-weight: 800; text-transform: uppercase; letter-spacing: .07em; }
+    .verdict strong { display: block; margin: 6px 0 4px; font: 1.32rem/1.3 Georgia, serif; letter-spacing: -.02em; }
+    .verdict p { margin: 0; color: #4c6661; font-size: .84rem; line-height: 1.5; }
+    .empty-result[hidden], .confirm[hidden], #scenario-result[hidden] { display: none; }
+    .confirm { display: flex; gap: 12px; align-items: center; margin: 12px 0 0; padding: 11px 13px; border-radius: 11px; background: #fffdf8; border: 1px dashed #9cc2b5; font-size: .84rem; }
+    @media (max-width: 700px) { .confirm { flex-direction: column; align-items: flex-start; gap: 6px; } }
+    .confirm b { font: 1.25rem/1 Georgia, serif; color: var(--teal-dark); white-space: nowrap; }
+    .breakdown { margin: 4px 0 18px; }
+    .bill-row { margin: 10px 0 0; }
+    .bill-row .row-label { display: flex; justify-content: space-between; gap: 10px; font-size: .78rem; color: #4c6661; margin-bottom: 5px; }
+    .bill-row .row-label b { color: var(--ink); }
+    .bill-bar { display: flex; height: 16px; border-radius: 6px; overflow: hidden; background: #eef1ec; gap: 2px; }
+    .bill-bar i { display: block; height: 100%; min-width: 0; }
+    .seg-ins { background: #0e6768; } .seg-fam { background: #8cbfae; } .seg-gap { background: #d9825f; }
+    .legend { display: flex; flex-wrap: wrap; gap: 6px 14px; margin: 9px 0 0; font-size: .74rem; color: #4c6661; }
+    .legend span { display: inline-flex; align-items: center; gap: 6px; }
+    .legend i { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+    .timeline { margin: 0 0 18px; padding: 15px 16px; border-radius: 13px; background: #f9eee4; }
+    .timeline ul { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 7px; }
+    .timeline li { display: flex; justify-content: space-between; gap: 12px; font-size: .84rem; }
+    .timeline li b { white-space: nowrap; }
+    .timeline p { margin: 9px 0 0; font-size: .78rem; color: #6a5b4e; line-height: 1.45; }
+    .split { margin: 0 0 18px; padding: 15px 16px; border-radius: 13px; background: #e8f2eb; }
+    .split[hidden] { display: none; }
+    .split strong { display: block; margin: 6px 0 3px; font: 1.12rem/1.35 Georgia, serif; }
+    .split p { margin: 0; font-size: .8rem; color: #4c6661; line-height: 1.45; }
+    .next-steps { margin: 18px 0 0; padding: 16px; border-radius: 13px; border: 1px solid #d3e3d9; background: #fbfdfa; }
+    .next-steps h4, .how h4 { margin: 0 0 4px; font-size: .95rem; }
+    .next-steps .sub { margin: 0 0 10px; color: #5c706c; font-size: .78rem; }
+    .next-steps ol { margin: 0; padding: 0; list-style: none; counter-reset: s; display: grid; gap: 11px; }
+    .next-steps li { position: relative; padding-left: 34px; font-size: .85rem; line-height: 1.45; counter-increment: s; }
+    .next-steps li::before { content: counter(s); position: absolute; left: 0; top: 0; width: 23px; height: 23px; border-radius: 7px; background: var(--teal); color: #fff; display: grid; place-items: center; font-size: .74rem; font-weight: 800; }
+    .next-steps li b { display: block; }
+    .next-steps li ul { margin: 5px 0 0; padding-left: 17px; color: #405a56; }
+    .next-steps li ul li { padding-left: 0; counter-increment: none; font-size: .81rem; }
+    .next-steps li ul li::before { content: none; }
+    .how { margin: 16px 0 0; }
+    .how-rows { display: grid; gap: 8px; margin-top: 8px; }
+    .how-row { display: grid; grid-template-columns: 128px 1fr; gap: 12px; padding: 10px 12px; border-radius: 11px; background: #f3f6f2; font-size: .8rem; line-height: 1.45; }
+    .how-row b { font-size: .74rem; text-transform: uppercase; letter-spacing: .06em; color: #42655e; }
+    .how-row.you { background: #fbeee3; } .how-row.you b { color: #8a4a2c; }
+    @media (max-width: 700px) { .how-row { grid-template-columns: 1fr; gap: 3px; } }
 
     .questions-grid { display: grid; grid-template-columns: .92fr 1.08fr; align-items: center; gap: 70px; }
     .questions-grid .section-heading p { max-width: 470px; }
@@ -290,7 +334,7 @@
             <p class="help">Whole rupees only. Family funds must exclude money already counted in your goal.</p>
             <div class="form-grid">
               <div class="field"><label for="bill">Hypothetical hospital bill (₹)</label><input id="bill" name="bill" type="number" inputmode="numeric" min="1000" max="5000000" step="1" value="200000" required></div>
-              <div class="field"><label for="familyFunds">Other family funds accessible (₹)</label><input id="familyFunds" name="familyFunds" type="number" inputmode="numeric" min="0" max="5000000" step="1" value="50000" required><small>Exclude your savings goal balance.</small></div>
+              <div class="field"><label for="familyFunds">Other family funds accessible (₹)</label><input id="familyFunds" name="familyFunds" type="number" inputmode="numeric" min="0" max="5000000" step="1" value="50000" required><small>Parents' or shared money. Exclude your goal savings and any sibling money you'll split below.</small></div>
               <fieldset class="field-group">
                 <legend>Assumed insurer payout</legend>
                 <label class="checkbox-row" for="payoutUnknown"><input id="payoutUnknown" type="checkbox" checked><span>I don't know. Test a range from no payout to the full bill.</span></label>
@@ -303,6 +347,8 @@
               <div class="field"><label for="currentSaved">Already saved for that goal (₹)</label><input id="currentSaved" type="number" min="0" max="20000000" step="1" value="200000" required></div>
               <div class="field"><label for="monthlySaving">Planned monthly saving (₹)</label><input id="monthlySaving" type="number" min="1" max="1000000" step="1" value="20000" required></div>
               <div class="field"><label for="focus">Question to explore</label><select id="focus"><option value="policy">What might the policy cover?</option><option value="timing">When would money be needed?</option><option value="family">Who could I discuss this with?</option></select></div>
+              <div class="field"><label for="siblings">Siblings who could share what's left</label><select id="siblings"><option value="0">Just me</option><option value="1">1 sibling</option><option value="2">2 siblings</option><option value="3">3 siblings</option></select><small>Splits any gap evenly as a starting point. Not sent or stored.</small></div>
+              <div class="field"><label for="situation">Kind of hospital situation</label><select id="situation"><option value="unsure">Not sure yet</option><option value="planned">Planned treatment</option><option value="emergency">Emergency admission</option><option value="ongoing">Ongoing treatment, repeat visits</option></select><small>Tailors your next steps. Not sent or stored. No diagnosis needed.</small></div>
             </div>
             <button class="button form-submit" id="run-button" type="submit">Run this what-if <span aria-hidden="true">↗</span></button>
             <p class="form-message" id="form-message" role="alert"></p>
@@ -310,15 +356,22 @@
           </form>
           <div class="result-card" aria-live="polite">
             <h3>Your check</h3>
-            <p class="help">Calculations come from code; Gemini helps turn uncertainty into questions.</p>
+            <p class="help">Every figure comes from the numbers you enter. Nothing here is a prediction.</p>
             <div class="empty-result" id="empty-result"><div class="symbol" aria-hidden="true">?</div><p>Your result will appear here after you run a scenario.</p></div>
             <div id="scenario-result" hidden>
-              <div class="result-metrics">
-                <div class="result-metric"><span>Possible amount still to find</span><strong id="gap-range"></strong><small>After the payout you assumed and the other family funds you entered. This is not a hospital deposit estimate.</small></div>
-                <div class="result-metric warm"><span>Possible effect on one goal</span><strong id="delay-range"></strong><small>If the remaining amount is funded from savings planned for that goal, with zero assumed return.</small></div>
-              </div>
-              <div class="model-text"><strong>Questions worth resolving</strong><p id="model-summary"></p><ol id="model-questions"></ol></div>
-              <p class="result-boundary">What-if, not a forecast. An insurer's actual payout and payment timing may differ. BridgePlan does not determine claim eligibility or tell you how to fund a bill today.</p>
+              <div class="verdict" id="verdict"><span>The answer</span><strong id="verdict-title"></strong><p id="verdict-text"></p><div class="confirm" id="confirm" hidden><b id="confirm-amount"></b><span id="confirm-text"></span></div></div>
+              <div class="breakdown"><span class="breakdown-title">Where the bill would be paid from</span><div id="bill-rows"></div>
+                <div class="legend"><span><i class="seg-ins"></i>Insurance (your assumption)</span><span><i class="seg-fam"></i>Other family funds</span><span><i class="seg-gap"></i>Left to find, e.g. from your goal savings</span></div></div>
+              <div class="split" id="split" hidden><span class="breakdown-title">Sharing with siblings</span><strong id="split-title"></strong><p id="split-text"></p></div>
+              <div class="timeline"><span class="timeline-title">Your savings goal</span><ul id="timeline-list"></ul><p id="timeline-note"></p></div>
+              <div class="model-text"><strong>Questions worth asking</strong><p id="model-summary"></p><ol id="model-questions"></ol></div>
+              <div class="next-steps"><h4>Your next steps</h4><p class="sub" id="steps-sub"></p><ol id="next-steps"></ol></div>
+              <div class="how"><h4>How this check works</h4><div class="how-rows">
+                <div class="how-row"><b>Worked out from your numbers</b><span>Every rupee amount and date above, worked out from the numbers you typed. The same inputs always give the same result.</span></div>
+                <div class="how-row"><b>Tailored to your situation</b><span>The short explanation and the two questions above, chosen from which of your inputs are still uncertain. They never contain amounts, predictions or advice.</span></div>
+                <div class="how-row you"><b>Left to you</b><span>Whether your policy actually covers this bill, who in the family contributes, whether a gap comes from goal money or emergency savings, and every medical decision.</span></div>
+              </div></div>
+              <p class="result-boundary">What-if, not a forecast. Every figure is calculated from the numbers you entered, assuming zero investment return. An insurer's actual payout and payment timing may differ. BridgePlan does not determine claim eligibility or tell you how to fund a bill.</p>
               <p class="form-foot" id="remaining-count"></p>
             </div>
           </div>
@@ -367,6 +420,110 @@
     const rupees = new Intl.NumberFormat('en-IN', {style:'currency', currency:'INR', maximumFractionDigits:0});
     const amount = id => Number(document.getElementById(id).value);
     const range = (low, high, formatter) => low === high ? formatter(low) : `${formatter(low)}–${formatter(high)}`;
+    const inr = n => rupees.format(n);
+    const months = n => `${n} month${n === 1 ? '' : 's'}`;
+    const monthFrom = n => { const d = new Date(); d.setDate(1); d.setMonth(d.getMonth() + n); return d.toLocaleDateString('en-IN', {month:'short', year:'numeric'}); };
+    function billRow(label, payout, bill, family) {
+      const ins = Math.min(payout, bill), fam = Math.min(family, bill - ins), gap = bill - ins - fam;
+      const pct = v => `${(100 * v / bill).toFixed(2)}%`;
+      const segs = [['seg-ins', ins], ['seg-fam', fam], ['seg-gap', gap]].filter(([, v]) => v > 0)
+        .map(([c, v]) => `<i class="${c}" style="width:${pct(v)}"></i>`).join('');
+      const tail = gap > 0 ? `<b>${inr(gap)} left to find</b>` : '<b>fully covered</b>';
+      return `<div class="bill-row"><div class="row-label"><span>${label}</span>${tail}</div><div class="bill-bar">${segs}</div></div>`;
+    }
+    function renderResult(p, c) {
+      const bill = p.bill, family = p.familyFunds;
+      const low = p.payoutUnknown ? 0 : p.payoutLow, high = p.payoutUnknown ? bill : p.payoutHigh;
+      const needed = Math.max(0, bill - family);
+      const verdict = document.getElementById('verdict');
+      const title = document.getElementById('verdict-title'), text = document.getElementById('verdict-text');
+      const confirm = document.getElementById('confirm');
+      confirm.hidden = true;
+      if (needed === 0) {
+        verdict.className = 'verdict ok';
+        title.textContent = 'Your other family funds alone could cover this bill.';
+        text.textContent = `The ${inr(family)} you entered is at least the ${inr(bill)} bill, before any insurance payout.`;
+      } else if (c.gapHigh === 0) {
+        verdict.className = 'verdict ok';
+        title.textContent = 'Covered in every case you tested.';
+        text.textContent = `Even at your lowest payout assumption (${inr(low)}), insurance plus family funds cover the ${inr(bill)} bill.`;
+      } else if (c.gapLow > 0) {
+        verdict.className = 'verdict gap';
+        title.textContent = `Even in your best case, ${inr(c.gapLow)} is left to find.`;
+        text.textContent = `Your highest payout assumption (${inr(high)}) plus ${inr(family)} of family funds still falls short of the ${inr(bill)} bill.`;
+        confirm.hidden = false;
+        document.getElementById('confirm-amount').textContent = inr(needed);
+        document.getElementById('confirm-text').textContent = "is the payout this bill would need. Worth checking whether your policy's cover could reach it.";
+      } else {
+        verdict.className = 'verdict gap';
+        title.textContent = `This bill is covered only if insurance pays at least ${inr(needed)}.`;
+        text.textContent = p.payoutUnknown
+          ? `You don't know the payout yet, so the gap could be anywhere from nothing to ${inr(c.gapHigh)}. One number settles it.`
+          : `Your payout assumptions run from ${inr(low)} to ${inr(high)}, so the gap could be anywhere from nothing to ${inr(c.gapHigh)}.`;
+        confirm.hidden = false;
+        document.getElementById('confirm-amount').textContent = inr(needed);
+        document.getElementById('confirm-text').textContent = 'is the one number to confirm with your insurer or HR: would the policy pay at least this much for a bill like this?';
+      }
+      const rows = low === high
+        ? [billRow(`If insurance pays ${inr(low)}`, low, bill, family)]
+        : [billRow(`If insurance pays ${inr(low)}${p.payoutUnknown ? ' (nothing)' : ' (your low case)'}`, low, bill, family),
+           billRow(`If insurance pays ${inr(high)}${p.payoutUnknown ? ' (the full bill)' : ' (your high case)'}`, high, bill, family)];
+      document.getElementById('bill-rows').innerHTML = rows.join('');
+      const base = c.baselineMonths;
+      const sibs = Number(document.getElementById('siblings').value), ways = sibs + 1;
+      const shareOf = g => Math.ceil(g / ways);
+      const delayFor = g => Math.max(0, Math.ceil((p.targetAmount - p.currentSaved + g) / p.monthlySaving) - base);
+      const myLow = shareOf(c.gapLow), myHigh = shareOf(c.gapHigh);
+      const myDelay = delayFor(myHigh);
+      const worst = base + (sibs ? myDelay : c.delayHigh);
+      const split = document.getElementById('split');
+      split.hidden = !(sibs && c.gapHigh > 0);
+      if (!split.hidden) {
+        document.getElementById('split-title').textContent = `Your share: ${range(myLow, myHigh, inr)}`;
+        document.getElementById('split-text').textContent = `An even split of what's left, ${ways} ways. Incomes and commitments differ, so treat this as a starting point to agree on, not a rule.`;
+      }
+      const items = [`<li><span>On your current plan</span><b>${monthFrom(base)} · ${months(base)}</b></li>`];
+      if (c.delayHigh > 0) items.push(`<li><span>If you cover the whole worst-case gap</span><b>${monthFrom(base + c.delayHigh)} · +${months(c.delayHigh)}</b></li>`);
+      if (sibs && myDelay < c.delayHigh) items.push(`<li><span>If you cover only your share</span><b>${monthFrom(base + myDelay)} · +${months(myDelay)}</b></li>`);
+      document.getElementById('timeline-list').innerHTML = items.join('');
+      const situation = document.getElementById('situation').value;
+      const SITUATION = {
+        planned: ['planned treatment', ['Is the hospital in the insurer\'s cashless network, and how far ahead must pre-authorisation be requested?',
+                  'Would room-rent limits, co-payment or sub-limits reduce what is paid for this kind of procedure?',
+                  'Does any waiting period apply to this treatment under the policy?']],
+        emergency: ['an emergency admission', ['If cashless is not approved at admission, how much would the hospital ask the family to pay upfront?',
+                  'For a reimbursement claim, which documents are needed and how long does settlement usually take?',
+                  'Which family funds could actually be moved within a day or two?']],
+        ongoing: ['ongoing treatment', ['How much cover is left this policy year, and is there a restore or top-up benefit if it runs out?',
+                  'Are follow-up visits, tests and medicines after discharge covered, and for how long?',
+                  'Would repeat admissions be treated as separate claims?']],
+        unsure: ['a hospital bill', ['Is the policy cashless or reimbursement at the hospitals the family would likely use?',
+                  'How much cover is left this policy year?',
+                  'Do room-rent limits, co-payment, sub-limits or waiting periods apply?']]
+      }[situation];
+      const steps = [];
+      if (needed === 0) steps.push(['Check the family funds are reachable quickly', 'Fixed deposits, gold or shared accounts can take days to access. Confirm what could be used within a week.']);
+      else if (c.gapHigh === 0) steps.push([`Check your lowest assumption (${inr(low)}) is realistic`, 'Ask your insurer or HR what the policy would actually pay for a bill like this.']);
+      else steps.push([`Confirm the one number: ${inr(needed)}`, 'Ask your insurer or HR whether the policy would pay at least this much for a bill like this.']);
+      steps.push([`Ask the questions that matter for ${SITUATION[0]}`, '<ul>' + SITUATION[1].map(q => `<li>${q}</li>`).join('') + '</ul>']);
+      steps.push(c.gapHigh > 0 && sibs
+        ? [`Agree a split with your sibling${sibs > 1 ? 's' : ''} now`, `An even split would be up to ${inr(myHigh)} each. Talk about it before anything happens, including how fast each of you could pay. Don't assume anyone has committed until they say so.`]
+        : c.gapHigh > 0
+        ? ['Talk to family before anything happens', `Agree who could cover up to ${inr(c.gapHigh)} and how quickly. Don't assume anyone has committed until they say so.`]
+        : ['Share the plan with family', 'Make sure everyone knows which funds would be used first.']);
+      steps.push((sibs ? myDelay : c.delayHigh) > 0
+        ? ['Decide which savings would take the hit', `Using goal money for ${sibs ? 'your share' : 'the gap'} could move your goal from ${monthFrom(base)} to as late as ${monthFrom(worst)}. Whether to use it or a separate emergency fund is your call.`]
+        : ['Keep your goal plan', 'Nothing in the cases you tested touches your goal savings.']);
+      steps.push(['Re-run this check with confirmed figures', 'Each number you confirm narrows the range. Come back when the policy renews or your savings change.']);
+      document.getElementById('steps-sub').textContent = `Tailored to ${SITUATION[0]} and your result. These are questions and decisions, not advice.`;
+      document.getElementById('next-steps').innerHTML = steps.map(([t, d]) => `<li><b>${t}</b>${d}</li>`).join('');
+      const mine = sibs ? myHigh : c.gapHigh, who = sibs ? 'Your worst-case share' : 'The worst-case gap';
+      document.getElementById('timeline-note').textContent = c.gapHigh === 0
+        ? 'No change to your goal in the cases you tested.'
+        : mine > p.currentSaved
+          ? `${who} (${inr(mine)}) is more than the ${inr(p.currentSaved)} you have saved for this goal so far.`
+          : `${who} would use ${p.currentSaved > 0 ? Math.round(100 * mine / p.currentSaved) : 0}% of the ${inr(p.currentSaved)} you have saved for this goal so far.`;
+    }
     payoutUnknown.addEventListener('change', () => {
       payoutLow.disabled = payoutUnknown.checked;
       payoutHigh.disabled = payoutUnknown.checked;
@@ -433,8 +590,7 @@
         const data = await response.json();
         if (!response.ok) throw new Error(data.error || 'The check is unavailable.');
         const {calculation, answer} = data;
-        document.getElementById('gap-range').textContent = range(calculation.gapLow, calculation.gapHigh, rupees.format.bind(rupees));
-        document.getElementById('delay-range').textContent = range(calculation.delayLow, calculation.delayHigh, n => `${n} month${n === 1 ? '' : 's'}`);
+        renderResult(payload, calculation);
         document.getElementById('model-summary').textContent = answer.summary;
         const list = document.getElementById('model-questions');
         list.replaceChildren(...answer.questions.map(question => {
